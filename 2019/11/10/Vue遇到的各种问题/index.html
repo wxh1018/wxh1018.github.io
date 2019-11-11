@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Vue遇到的各种问题 | Wxh&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="MinHow,MinHow's Blog" />
+  
+  <meta name="description" content="原理1.你知道vue的模板语法用的是哪个web模板引擎的吗？说说你对这模板引擎的理解. 1mustache，主要是使用&amp;#123;&amp;#123;&amp;#125;&amp;#125;进行数据渲染。  2.你知道v-model的原理吗？那双向绑定的原理呢？ 1234v-model是一个语法糖，真正实现双向绑定还是依靠v-bind：绑定响应式数据。以及触发input事件并传递数据（核心和重点）双向绑定的原理：通过Ob">
+<meta name="keywords" content="vue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue遇到的各种问题">
+<meta property="og:url" content="https:&#x2F;&#x2F;www.wxh520.xyz&#x2F;2019&#x2F;11&#x2F;10&#x2F;Vue%E9%81%87%E5%88%B0%E7%9A%84%E5%90%84%E7%A7%8D%E9%97%AE%E9%A2%98&#x2F;index.html">
+<meta property="og:site_name" content="Wxh&#39;s blog">
+<meta property="og:description" content="原理1.你知道vue的模板语法用的是哪个web模板引擎的吗？说说你对这模板引擎的理解. 1mustache，主要是使用&amp;#123;&amp;#123;&amp;#125;&amp;#125;进行数据渲染。  2.你知道v-model的原理吗？那双向绑定的原理呢？ 1234v-model是一个语法糖，真正实现双向绑定还是依靠v-bind：绑定响应式数据。以及触发input事件并传递数据（核心和重点）双向绑定的原理：通过Ob">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-11-11T15:19:18.759Z">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Wxh&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/head.jpg" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        Wxh&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        一个专注 WEB 开发的技术博客
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="MinHow" target="_blank" href="//minhow.com">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//github.com/wxh1018">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="//weibo.com/WongMinHo">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="Twitter" target="_blank" href="//twitter.com/huangminhow">
+                            <i class="fa fa-twitter fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-Vue遇到的各种问题" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      Vue遇到的各种问题
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/vue/">vue</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2019-11-10
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>1.你知道vue的模板语法用的是哪个web模板引擎的吗？说说你对这模板引擎的理解.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mustache，主要是使用&#123;&#123;&#125;&#125;进行数据渲染。</span><br></pre></td></tr></table></figure>
+
+<p>2.你知道v-model的原理吗？那双向绑定的原理呢？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">v-model是一个语法糖，真正实现双向绑定还是依靠v-bind：绑定响应式数据。以及触发input事件并传递数据（核心和重点）</span><br><span class="line">双向绑定的原理：通过Observer把数据劫持（Object.defineProperty()），加入到订阅器（Dep）,订阅器收集订阅者（watch），视图通过编译（Compile）</span><br><span class="line">解析指令（Directive）等一系列操作收集给订阅者，最后通过触发数据变化update通知所有的订阅者完成数据驱动。</span><br><span class="line">直白的理解为：Object.defineProperty()重新定义了set和get方法，修改触发set方法赋值。获取触发get方法取值，并通过数据劫持发布信息。</span><br></pre></td></tr></table></figure>
+
+<p>3.你知道vue中key的原理吗？说说你对它的理解</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">便于diff算法的更新，key的唯一性，能让diff算法更快的找到需要更新的dom节点。</span><br></pre></td></tr></table></figure>
+
+<p>4.Vue.Observable你有了解过吗？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vue2.6发布的一个新的api，可以处理简单的跨组件共享数据状态的问题。</span><br><span class="line">精简版的vuex。</span><br></pre></td></tr></table></figure>
+
+<p>5.你知道style加scoped属性的用途和原理吗？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1.用途：防止全局同名css污染。</span><br><span class="line">2.原理：在标签上添加v-data-something属性，再在选择器加上对应[v-data-something],即css带属性选择器，以此完成类似作用域的选择方式。</span><br></pre></td></tr></table></figure>
+
+<p>6.$nextTick的作用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// 官方文档：下次DOM更新循环结束执行延迟回调，在修改数据之后立刻调用这个方法，就会获取更新后的DOM。</span><br><span class="line"></span><br><span class="line">//什么时候用到Vue.$nextTick();</span><br><span class="line"></span><br><span class="line">//1.created初始化状态的时候没有挂载dom元素，所以此时需要操作dom元素就必须使用$nextTick();</span><br><span class="line">//2.mounted不会承诺所有的子组件也都一起被挂载，如果你希望等到整个视图都渲染完毕，可以用$nextTick()替换mounted。</span><br><span class="line"></span><br><span class="line">mounted:function()&#123;</span><br><span class="line">   this.$nextTick(()=&gt;&#123;</span><br><span class="line">       </span><br><span class="line">   &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="文件路径"><a href="#文件路径" class="headerlink" title="文件路径"></a>文件路径</h2><p>1.怎么解决vue打包后静态资源图片失效的问题？，那又怎么解决动态设置img的src不生效呢？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1.找到config/index.js配置文件，找到build打包对象里的assetsPublicPath属性，将默认值：&apos;/&apos;，修改为：&apos;./&apos;。</span><br><span class="line">2.因为动态添加的src被当做静态资源处理了，没有进行编译，所以要加上require。</span><br><span class="line">&lt;img :src=&quot;require(&apos;@/assets/images/xxx.png&apos;)&quot; /&gt;</span><br></pre></td></tr></table></figure>
+
+<p>2.分析下vue项目本地开发完后部署到服务器后报404是什么原因？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1.检查nginx（服务器）配置，是否正确配置资源映射条件。</span><br><span class="line">2.检查vue.config.js中是否配置了pubilcPath属性，检查是否和项目资源文件在服务器摆放的位置一样。</span><br></pre></td></tr></table></figure>
+
+<p> 3.在vue项目中如何配置favicon？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1.在html中添加mate标签</span><br><span class="line">2.在vue-cil中开发环境webpack.dev.config.js中配置，和生产环境webpack.prod.config.js中配置。</span><br></pre></td></tr></table></figure>
+
+<p>4.使用vue后怎么针对搜索引擎做SEO优化？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">使用服务端渲染，vue官方推荐nuxt.js</span><br></pre></td></tr></table></figure>
+
+<h2 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h2><p>1.Vue生命周期可以分为几个阶段？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">8个阶段</span><br><span class="line">1.beforeCreate：创建前,（data和methods都没初始化）</span><br><span class="line">2.created：创建后，(data和methods已经初始化)</span><br><span class="line">3.beforeMount：载入前,（在内存中已经编译好了模板，但是还没有挂载到页面上，dom还没有生成）</span><br><span class="line">4.mounted：载入后,（Vue实例已经初始化完成了，此刻dom已经生成）</span><br><span class="line">5.beforeUpdate：更新前,（此刻页面的数据是旧的，data的数据是更新的了，也就是页面还没有和最新的数据同步）</span><br><span class="line">6.updated：更新后（页面的数据已经和更新的数据同步了）,</span><br><span class="line">7.beforeDestroy：销毁前（此刻data，mothods，指令，过滤器都处于可用状态）,</span><br><span class="line">8.destroyed：销毁后（此刻所有的data，mothods，指令等等，都处于不可用状态）</span><br></pre></td></tr></table></figure>
+
+<p>2.Vue在created和mounted这两个生命周期中请求的数据有什么区别？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1.在created请求时，是在页面渲染出来之前做的事情，如果数据过大，可能造成页面白屏过久，因为created还没有dom元素生成。并且也不能操作dom元素</span><br><span class="line">2.在mounted请求时，是在页面渲染出来之后做的事情，此时可以操作dom元素。</span><br></pre></td></tr></table></figure>
+
+<p>3.跟keep-alive有关的生命周期是哪些？描述下这些生命周期</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1.activated： 页面第一次进入的时候，钩子触发的顺序是created-&gt;mounted-&gt;activated</span><br><span class="line">2.deactivated: 页面退出的时候会触发deactivated，当再次前进或者后退的时候只触发activated</span><br></pre></td></tr></table></figure>
+
+<p>4.第一次加载页面时会触发哪几个钩子？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1.beforeCreate</span><br><span class="line">2.created</span><br><span class="line">3.beforeMount</span><br><span class="line">4.mounted</span><br></pre></td></tr></table></figure>
+
+<h2 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h2><p>1.如何通过子组件访问父组件的实例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">this.$parent :拿到父组件的实例</span><br><span class="line">this.$children拿到子组件实例（数组）</span><br></pre></td></tr></table></figure>
+
+<p>2.如何访问子组件的实例或者子元素</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//父组件</span><br><span class="line">&lt;template&gt;</span><br><span class="line">    //给子组件绑定ref属性</span><br><span class="line">    &lt;base-alert ref=&quot;baseAlert&quot;&gt;&lt;/base-alert&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">使用this.$refs.baseAlert获取到子组件，并且可以调用子组件this.$refs.baseAlert.add()方法。</span><br></pre></td></tr></table></figure>
+
+<p>3.vue怎么实现强制刷新组件？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//强制刷新某组件</span><br><span class="line">&lt;SomeComponent :key=&apos;theKey&apos;&gt;</span><br><span class="line">//选项里绑定data</span><br><span class="line">data()&#123;</span><br><span class="line">  return&#123;</span><br><span class="line">      theKey:0</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">//刷新key达到刷新组件的目的</span><br><span class="line">theKey++;</span><br></pre></td></tr></table></figure>
+
+<p>4.vue自定义事件中父组件如何接收子组件的多个参数？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//子组件提交多个参数</span><br><span class="line">var data = &#123;</span><br><span class="line">    &apos;name&apos;:&apos;1&apos;,</span><br><span class="line">    &apos;name2&apos;:&apos;2&apos;</span><br><span class="line">&#125;</span><br><span class="line">this.$emit(&apos;func&apos;,data)</span><br></pre></td></tr></table></figure>
+
+
+
+<p>5.vue给组件绑定自定义事件无效怎么解决？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1、组件外部加修饰符：.native</span><br><span class="line">//父组件</span><br><span class="line">&lt;div&gt;</span><br><span class="line">     &lt;my-children @click.native=&apos;onClick&apos;&gt;&lt;/my-children&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">2、组件内部添加$emit()方法提交事件</span><br></pre></td></tr></table></figure>
+
+<p>6.vue如果想扩展某个现有的组件时，该怎么做？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1.使用slot插槽。</span><br><span class="line">2.使用mixin混入。</span><br><span class="line">3.使用vue.extends直接扩展。(优先级比mixin高)</span><br><span class="line">4.使用HOC高阶组件。</span><br></pre></td></tr></table></figure>
+
+<p>7.vue为什么要求组件模板只能有一个根元素？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">就像一个HTML文档只能有一个根元素一样....</span><br><span class="line">多个根元素必将导致无法构成一颗树</span><br><span class="line">所以解释了 &lt;template&gt;&lt;/template&gt;只有一个&lt;div&gt;根元素。</span><br></pre></td></tr></table></figure>
+
+<p>8.vue中什么是递归组件？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">//当前注册一个vue组件定义 name 为 &apos;node-tree&apos; ，在组件 template 内部调用 实现递归。</span><br><span class="line">//tree.vue</span><br><span class="line">&lt;template&gt;</span><br><span class="line">        &lt;template v-for=&quot;item in parentItem.list&quot;&gt;</span><br><span class="line">            &lt;node-tree v-if=&quot;item.list&amp;&amp;item.list.length!==0&quot; :parent-item=&quot;item&quot; &gt;</span><br><span class="line">                &lt;!--无限递归，--&gt;</span><br><span class="line">            &lt;/node-tree&gt;</span><br><span class="line">        &lt;/template&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    export default&#123;</span><br><span class="line">        name:&apos;nodeTree&apos;,</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>9.vue边界情况有哪些？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">1.访问元素&amp;组件</span><br><span class="line">   访问根实例</span><br><span class="line">   访问父组件实例</span><br><span class="line">   访问子组件实例或子元素</span><br><span class="line">   依赖注入</span><br><span class="line">2.程序化的事件侦听器</span><br><span class="line">   $on(event,,,) ：侦听一个事件</span><br><span class="line">   $once(event,,,)：一次性侦听一个事件</span><br><span class="line">   $off(event,,,)：停止侦听一个事件</span><br><span class="line">3.循环引用</span><br><span class="line">   3.1：递归组件</span><br><span class="line">   3.2：组件之间的循环引用</span><br></pre></td></tr></table></figure>
+
+<p>10.vue组件中定时器要怎么销毁？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const time = setInterval(()=&gt;&#123;</span><br><span class="line">    //do.somthing</span><br><span class="line">&#125;,500)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//通过$once监听定时器，在beforeDestroy钩子可以被清除。</span><br><span class="line">this.$once(&apos;hook:beforeDestroy&apos;,()=&gt;&#123;</span><br><span class="line">     clearInterval(time)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>11.vue组件会在什么情况下被销毁？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在组件中使用v-if的时候。</span><br></pre></td></tr></table></figure>
+
+<p>12.vue组件里写的原生addEventListeners监听事件，可以用手动销毁吗？为什么？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">可以用手动销毁，因为一方面是绑定多次，另一方面是函数没有释放会造成内存溢出。</span><br></pre></td></tr></table></figure>
+
+<p>13.你了解函数式组件吗？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">需要提供一个render方法，接收一个参数（createElement函数）,方法内根据业务逻辑写需求，createElement创建vnodes，最后return vnodes</span><br><span class="line"></span><br><span class="line">createElement函数接收三个参数，1：html标签或自定义组件。2：一个object（包含props，on...等等），3:children（通过createElement构建，或者字符串）</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="问题知识点-HTML"><a href="#问题知识点-HTML" class="headerlink" title="问题知识点-HTML"></a>问题知识点-HTML</h2><p>1.Vue渲染模板时怎么保留模板中的HTML注释呢?</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//模板标签添加 comments 属性</span><br><span class="line">&lt;template comments&gt;</span><br><span class="line">     ...</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+<p>2.如何修改分隔符”&lt;!–￼53–&gt;”?</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//对于laravel+vue开发已经成为常态(php)，laravel框架开发下我们的分隔符&quot;&#123;&#123;&#125;&#125;&quot;是和vue+webapck+node是一样的。所以我们要修改我们的分隔符。</span><br><span class="line"></span><br><span class="line">var vm =new Vue(&#123;</span><br><span class="line">     el:&quot;app&quot;,</span><br><span class="line">     delimiters:[&apos;$&#123;&apos; , &apos;&#125;&apos;], //修改定界符&apos;&#123;&#123;&#125;&#125;&apos;;</span><br><span class="line">    data()&#123;&#125;</span><br><span class="line">&#125;)</span><br><span class="line">//最后laravel框架下的分割符变成了$&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p> 3.slot（插槽）的理解有多少？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//插销显示与否：应根据父组件在引入子组件时，子组件中是否存在模板。</span><br><span class="line"></span><br><span class="line">1.匿名插槽：在父组件中只能出现一个。</span><br><span class="line">2.具名插槽：在父组件中可以出现多个</span><br><span class="line">3.作用于插槽：在插槽中要绑定数据，</span><br><span class="line">&lt;slot name=&quot;up&quot; :data=&quot;data&quot;&gt;&lt;/slot&gt;</span><br><span class="line"> export default &#123;</span><br><span class="line">    data: function()&#123;</span><br><span class="line">      return &#123;</span><br><span class="line">        data: [&apos;zhangsan&apos;,&apos;lisi&apos;,&apos;wanwu&apos;,&apos;zhaoliu&apos;,&apos;tianqi&apos;,&apos;xiaoba&apos;]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure>
+
+<p> 4.如何优化首页的加载速度？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1.http请求控制次数。</span><br><span class="line">2.异步加载数据，异步路由。</span><br><span class="line">3.分屏加载，按需加载，延迟加载图片，cdn静态资源缓存。</span><br></pre></td></tr></table></figure>
+
+<h2 id="问题知识点-CSS"><a href="#问题知识点-CSS" class="headerlink" title="问题知识点-CSS"></a>问题知识点-CSS</h2><p> 1.Vue的：class和;style有几种表达方式？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">:class 绑定变量，绑定对象，绑定一个数组，绑定三元运算符</span><br><span class="line">:style 绑定变量，绑定对象，绑定函数返回值，绑定三元运算符</span><br></pre></td></tr></table></figure>
+
+<h2 id="问题知识点-JS"><a href="#问题知识点-JS" class="headerlink" title="问题知识点-JS"></a>问题知识点-JS</h2><p>1.Vue中怎么重置data</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1.Object.assign()方法：用于将所有可枚举属性的值从一个或多个源对象复制到目标对象。</span><br><span class="line">2.this.$data：获取当前状态下的data。</span><br><span class="line">3.this.$option.data：获取该组件初始化状态下的data。</span><br><span class="line">4.Object.assign(this.$data,this.$option.data);</span><br></pre></td></tr></table></figure>
+
+<p>2.watch的属性用箭头函数定义结果会怎么样？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">this为undefined，因为箭头函数绑定了父级作用域的山下文，所以this将不会按照期望指向vue实例。</span><br></pre></td></tr></table></figure>
+
+<p>3.在vue项目中如果methods的方法用箭头函数定义结果会怎么样？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">因为箭头函数默认绑定了父级作用域的上下文，所以this将不会绑定vue实例，所以this是undefined。</span><br></pre></td></tr></table></figure>
+
+<p>4.你有使用过babel-polyfill模块吗？主要是用来做什么的？ </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">babel默认只进行转换语法，而不转换新的api。所以想要转换新的api还需要对应的转换插件。或者使用polyfill模拟新api。</span><br></pre></td></tr></table></figure>
+
+<p>5.说说你对vue的错误处理的了解？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vue错误处理有两种，</span><br><span class="line">1.errorCaptured：是组件内部钩子，可以捕获到本组件以及子孙组件抛出的错误，接收参数有error，vm，info三个参数，return false后可以阻止错误继续向上抛出、</span><br><span class="line">2.errorHandler：为全局钩子，使用vue.config.errorHandler配置，接收参数和errorCaptured一致，2.6后可捕获v-on与promise链的错误，可用于统一错误处理与错误兜底。</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>在vue事件中传入$event，使用e.target和e.currentTarget有什么区别？</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">e.target：属于事件发生者（鼠标触发的元素）</span><br><span class="line">e.currentTarget：属于事件绑定的元素。</span><br></pre></td></tr></table></figure>
+
+<p>7.vue变量名如果以_、$开头的属性会发生什么问题？怎么访问到它们的值？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">以_或者$开头的属性 不会被vue实例代理，因为它们可能会和vue内置属性，api方法冲突，</span><br><span class="line">我们可以使用vm.$data._property的方式访问这些属性</span><br></pre></td></tr></table></figure>
+<p>8.vue使用v-for遍历对象时，是按照什么顺序遍历的？如何保证顺序？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1.会先判断对象是否存在iterator接口，如果有循环执行next()方法。</span><br><span class="line">2.没有iterator的情况下，会调用Object.Keys()方法，在不同的浏览器中，js引擎不能保证输出的顺序是一致的。</span><br><span class="line">3.如果想要保证输出的顺序一致，可以将对象放进数组中，作为数组的元素。</span><br></pre></td></tr></table></figure>
+
+<p> 9.说下$attrs和$listeners的使用场景</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$attrs：获取父级以上的所有（非props属性）的属性。</span><br><span class="line">$listeners：调用在父级以上的所有定义的方法。</span><br></pre></td></tr></table></figure>
+
+<p>10.EventBus事件总线注册在全局上时，路由切换的时候重复触发事件，该如何解决呢？ </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">1、EventBus的使用</span><br><span class="line">//创建EventBus</span><br><span class="line">import Vue from &apos;vue&apos;</span><br><span class="line">export default new Vue;</span><br><span class="line"></span><br><span class="line">2、在main.js导入eventbus，然后挂载在vue原型上</span><br><span class="line"></span><br><span class="line">import bus from &apos;./utils/eventBus&apos;;</span><br><span class="line"></span><br><span class="line">Vue.prototyle.bus = bus;</span><br><span class="line"></span><br><span class="line">3、发送事件</span><br><span class="line">//在触发事件的地方发送事件</span><br><span class="line">this.bus.$emit(this.$route.path);$emit()里面接收一个string字符串事件名，</span><br><span class="line"></span><br><span class="line">4、接收事件</span><br><span class="line">//事件已经发送，接下来只需要在需要接收事件的地方接收这个事件，然后对事件进行响应就可以了。</span><br><span class="line">this.bus.$on(this.$route.path,()=&gt;&#123;</span><br><span class="line">  this.getData();</span><br><span class="line">&#125;)</span><br><span class="line">//接收事件同样需要一个事件名。</span><br><span class="line"></span><br><span class="line">5、事件重复触发的问题</span><br><span class="line"> //我们只需要在组件的beforeDestroy或者destroy生命周期中执行销毁方法。</span><br><span class="line">beforeDestroy()&#123;</span><br><span class="line"> this.bus.$off(this.$route.path)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">6、如果使用this.$route.path作为事件名，那么虽然我们在生命周期注销了事件，但是还是发现事件会执行多次，原因在于我们在beforeDestroy中，this.$router.path根本不是我们发送和响应事件时候的路由了，而是将要跳转的页面路由。所以只要我们在当前页面用一个变量将当前路由存下来。用这个变量作为变量名注销事件即可。</span><br></pre></td></tr></table></figure>
+
+<p>11.Vue组件中写name选项有什么作用？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1.使用keep-alive时，可以搭配组件name进行缓存过滤</span><br><span class="line">2.DOM做递归组件时需要调用自身name。</span><br><span class="line">3.vue-devtools调式工具里显示的组件名称是有vue中name决定的</span><br></pre></td></tr></table></figure>
+
+<p>12.Vue中的provide和inject是什么？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">provide：是一个对象，或者是返回对象的函数，里面包含要给子孙后代的东西，也就是属性和属性值。（不再需要逐级往上找值）</span><br><span class="line">inject：是一个字符串数组，或者是一个对象，属性值可以是一个对象，包含from，和default默认值。</span><br></pre></td></tr></table></figure>
+
+<p>13.v-if和v-for同时出现的优先级问题？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//v-for的优先级比v-if高。所以同时出现的时候，先给v-for套一层template作为父级元素，再在父级元素进行v-if判断</span><br><span class="line"></span><br><span class="line">&lt;template v-if&gt;</span><br><span class="line">    &lt;div v-for&gt;&lt;/div&gt;</span><br><span class="line">&lt;template&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="指令与修饰符"><a href="#指令与修饰符" class="headerlink" title="指令与修饰符"></a>指令与修饰符</h2><p>1.v-once的使用场景有哪些？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">表单提交，可防止用户在请求未响应时再次点击多次触发。</span><br></pre></td></tr></table></figure>
+
+<p>2.vue修饰符.lazy的理解？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">由input事件改变为change事件。</span><br></pre></td></tr></table></figure>
+
+<p> 3.常用的指令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1.v-if 、2.v-for、3.v-on、4.v-bind、5.v-once 、</span><br><span class="line">6.v-foucs、7.v-blur、8.v-model、 9.v-hide、10.v-show</span><br></pre></td></tr></table></figure>
+
+<p>4.v-cloak和v-pre指令的理解</p>
+<p>1.v-cloak：是指在HTML渲染之前定义的一个指令属性，通常用于解决网络延迟页面显示Vue源码的问题。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&apos;app&apos; v-cloak&gt;</span><br><span class="line">  &#123;&#123;context&#125;&#125;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">//CSS</span><br><span class="line">[v-cloak]&#123;</span><br><span class="line">   display：none；//隐藏&#123;&#123;context&#125;&#125;源码的显示。</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>2.v-pre：跳过添加v-pre指令的元素以及它的所有子元素的编译过程。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;span v-pre&gt;&#123;&#123;msg&#125;&#125;&lt;/span&gt;</span><br><span class="line">//即使在data定义了msg，这里仍然会在页面显示&#123;&#123;msg&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p> 5.指令的钩子有哪些？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.bind：只调用一次，指令第一次绑定到元素时调用，在这里可以进行一次性初始化设置</span><br><span class="line">2.inserted：被绑定元素插入父节点时调用（仅保证父节点的存在，但不一定已被插入文档中）</span><br><span class="line">3.update：所在组件的VNode更新时调用。但是可能发生在其子VNode更新之前。指令的值可能发生了变化。也可能没有。</span><br><span class="line">4.componentUpated：指令所在的组件的VNode及其子VNode全部更新后调用。</span><br><span class="line">5.unbind：只调用一次，指令与元素解绑时调用</span><br></pre></td></tr></table></figure>
+
+<p> 6.prevent.self与self.prevent的先后顺序问题</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">//prevent.self 阻止元素所有自身的点击事件</span><br><span class="line">&lt;div @click=&quot;fun()&quot;&gt;</span><br><span class="line">    &lt;a href=&quot;@/pages/home/homeIndex&quot; @click.prevent.self=&quot;fun1()&quot;&gt;</span><br><span class="line">        &lt;span v-on:click=&quot;fun2()&quot;&gt;sapn标签&lt;/span&gt;</span><br><span class="line">    &lt;/a&gt;    </span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">//点击span标签 会触发fun2和fun函数 但是 a标签所有的事件都不会触发，包括链接跳转</span><br><span class="line"></span><br><span class="line">//self.prevent 阻止元素自身的点击事件</span><br><span class="line">&lt;div @click=&quot;fun()&quot;&gt;</span><br><span class="line">    &lt;a href=&quot;@/pages/home/homeIndex&quot; @click.self.prevent=&quot;fun1()&quot;&gt;</span><br><span class="line">        &lt;span v-on:click=&quot;fun2()&quot;&gt;sapn标签&lt;/span&gt;</span><br><span class="line">    &lt;/a&gt;    </span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">//点击span标签 会触发fun2和fun函数 但是 a标签自身的点击事件不会触发，而会触发链接跳转</span><br></pre></td></tr></table></figure>
+
+
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2019年11月11日 23:19</p>
+        <p>原始链接： <a class="post-url" href="/2019/11/10/Vue%E9%81%87%E5%88%B0%E7%9A%84%E5%90%84%E7%A7%8D%E9%97%AE%E9%A2%98/" title="Vue遇到的各种问题">https://www.wxh520.xyz/2019/11/10/Vue%E9%81%87%E5%88%B0%E7%9A%84%E5%90%84%E7%A7%8D%E9%97%AE%E9%A2%98/</a></p>
+        <footer>
+            <a href="https://www.wxh520.xyz">
+                <img src="/images/head.jpg" alt="Wxh">
+                Wxh
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" target="_blank" rel="noopener">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" target="_blank" rel="noopener" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://www.wxh520.xyz/2019/11/10/Vue%E9%81%87%E5%88%B0%E7%9A%84%E5%90%84%E7%A7%8D%E9%97%AE%E9%A2%98/&title=《Vue遇到的各种问题》 — Wxh's blog&pic=https://www.wxh520.xyzimages/head.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://www.wxh520.xyz/2019/11/10/Vue%E9%81%87%E5%88%B0%E7%9A%84%E5%90%84%E7%A7%8D%E9%97%AE%E9%A2%98/&title=《Vue遇到的各种问题》 — Wxh's blog&source=专注 WEB 开发的技术博客" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://www.wxh520.xyz/2019/11/10/Vue%E9%81%87%E5%88%B0%E7%9A%84%E5%90%84%E7%A7%8D%E9%97%AE%E9%A2%98/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Vue遇到的各种问题》 — Wxh's blog&url=https://www.wxh520.xyz/2019/11/10/Vue%E9%81%87%E5%88%B0%E7%9A%84%E5%90%84%E7%A7%8D%E9%97%AE%E9%A2%98/&via=https://www.wxh520.xyz" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://www.wxh520.xyz/2019/11/10/Vue%E9%81%87%E5%88%B0%E7%9A%84%E5%90%84%E7%A7%8D%E9%97%AE%E9%A2%98/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://www.wxh520.xyz/2019/11/10/Vue%E9%81%87%E5%88%B0%E7%9A%84%E5%90%84%E7%A7%8D%E9%97%AE%E9%A2%98/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/vue/" class="color4">vue</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#原理"><span class="post-toc-text">原理</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#文件路径"><span class="post-toc-text">文件路径</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#生命周期"><span class="post-toc-text">生命周期</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#组件"><span class="post-toc-text">组件</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#问题知识点-HTML"><span class="post-toc-text">问题知识点-HTML</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#问题知识点-CSS"><span class="post-toc-text">问题知识点-CSS</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#问题知识点-JS"><span class="post-toc-text">问题知识点-JS</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#指令与修饰符"><span class="post-toc-text">指令与修饰符</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2019/11/11/JS%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          JS面试题
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2019/08/01/installation-configuration/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">MiHo-主题安装和配置详情</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 Wxh<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://www.wxh520.xyz",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/JS/">JS</a><a class="category-link" href="/categories/JS%E5%9F%BA%E7%A1%80/">JS基础</a><a class="category-link" href="/categories/vue/">vue</a><a class="category-link" href="/categories/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/">开源项目</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/JS%E5%9F%BA%E7%A1%80/" style="font-size: 10px;">JS基础</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 10px;">博客</a> <a href="/tags/%E5%9F%BA%E7%A1%80/" style="font-size: 10px;">基础</a> <a href="/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/" style="font-size: 10px;">开源项目</a> <a href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/" style="font-size: 10px;">面试题</a>
+        </div>
+    </div>
+    <a href="javascript:;" target="_blank" rel="noopener" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/JS%E5%9F%BA%E7%A1%80/" style="font-size: 10px;">JS基础</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 10px;">博客</a> <a href="/tags/%E5%9F%BA%E7%A1%80/" style="font-size: 10px;">基础</a> <a href="/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/" style="font-size: 10px;">开源项目</a> <a href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/" style="font-size: 10px;">面试题</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;" target="_blank" rel="noopener">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

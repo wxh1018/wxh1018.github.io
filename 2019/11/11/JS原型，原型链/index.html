@@ -3,20 +3,23 @@
 <head>
   <meta charset="utf-8">
   
-  <title>tags | Wxh&#39;s blog</title>
+  <title>JS原型,原型链 | Wxh&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
     <meta name="keywords" content="MinHow,MinHow's Blog" />
   
-  <meta name="description" content="专注 WEB 开发的技术博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="tags">
-<meta property="og:url" content="https:&#x2F;&#x2F;www.wxh520.xyz&#x2F;tages&#x2F;index.html">
+  <meta name="description" content="javascript原型、原型链？有什么特点每个函数都有一个==prototype==属性，函数的prototype属性指向了一个对象，这个对象正是调用该构造函数而创建的实例原型 那么什么是原型呢？你可以这样理解：每一个JavaScript对象（null除外）在创建的时候就会与之关联另一个对象，这个对象就是我们所说的原型，每一个对象都会从原型”继承”属性。 这是每一个javaScript对象（除了">
+<meta name="keywords" content="JS基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS原型,原型链">
+<meta property="og:url" content="https:&#x2F;&#x2F;www.wxh520.xyz&#x2F;2019&#x2F;11&#x2F;11&#x2F;JS%E5%8E%9F%E5%9E%8B%EF%BC%8C%E5%8E%9F%E5%9E%8B%E9%93%BE&#x2F;index.html">
 <meta property="og:site_name" content="Wxh&#39;s blog">
-<meta property="og:description" content="专注 WEB 开发的技术博客">
+<meta property="og:description" content="javascript原型、原型链？有什么特点每个函数都有一个==prototype==属性，函数的prototype属性指向了一个对象，这个对象正是调用该构造函数而创建的实例原型 那么什么是原型呢？你可以这样理解：每一个JavaScript对象（null除外）在创建的时候就会与之关联另一个对象，这个对象就是我们所说的原型，每一个对象都会从原型”继承”属性。 这是每一个javaScript对象（除了">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-10T15:06:30.199Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20191111223745632.png?x-oss-process=image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDYzNjU5Ng==,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2019-11-11T15:19:41.748Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20191111223745632.png?x-oss-process=image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDYzNjU5Ng==,size_16,color_FFFFFF,t_70">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -107,20 +110,27 @@
     </div>
 </header>
       <div class="outer">
-        <section id="main" class="body-wrap"><article id="page-" class="article article-type-page" itemscope itemprop="blogPost">
+        <section id="main" class="body-wrap"><article id="post-JS原型，原型链" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="post-title" itemprop="name">
-      tags
+      JS原型,原型链
     </h1>
     <div class="post-title-bar">
       <ul>
           
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/JS基础/">JS基础</a>
+                  
+              </li>
+          
         <li>
-          <i class="fa fa-calendar"></i>  2019-11-10
+          <i class="fa fa-calendar"></i>  2019-11-11
         </li>
         <li>
           <i class="fa fa-eye"></i>
@@ -133,14 +143,25 @@
           
       </header>
     
-    <div class="article-entry " itemprop="articleBody">
+    <div class="article-entry post-content" itemprop="articleBody">
       
             
-            
+            <h1 id="javascript原型、原型链？有什么特点"><a href="#javascript原型、原型链？有什么特点" class="headerlink" title="javascript原型、原型链？有什么特点"></a>javascript原型、原型链？有什么特点</h1><p>每个函数都有一个==prototype==属性，函数的prototype属性指向了一个对象，这个对象正是调用该构造函数而创建的实例原型</p>
+<p>那么什么是原型呢？你可以这样理解：每一个JavaScript对象（null除外）在创建的时候就会与之关联另一个对象，这个对象就是我们所说的原型，每一个对象都会从原型”继承”属性。</p>
+<p>这是每一个javaScript对象（除了null）都具有的一个属性，叫<em>proto</em>,这个属性会指向该对象的原型。<br><img src="https://img-blog.csdnimg.cn/20191111223745632.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDYzNjU5Ng==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>原型链解决的主要是继承问题。<br>每个对象拥有一个原型对象，通过proto指针指向其原型对象，并从中继承方法和属性，同时原型对象也可能拥有原型，一样一层一层，最终指向null（Object.prototype.proto指向的是null）。<br>这种关系被称为原型链（prototype chain），通过原型链一个对象拥有定义在其他对象中的属性和方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function Person() &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">var person = new Person();</span><br><span class="line">console.log(person.__proto__ === Person.prototype); // true</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function Person() &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">console.log(Person === Person.prototype.constructor); // true</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function Person() &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var person = new Person();</span><br><span class="line"></span><br><span class="line">console.log(person.__proto__ == Person.prototype) // true</span><br><span class="line">console.log(Person.prototype.constructor == Person) // true</span><br><span class="line">// 顺便学习一个ES5的方法,可以获得对象的原型</span><br><span class="line">console.log(Object.getPrototypeOf(person) === Person.prototype) // true</span><br></pre></td></tr></table></figure>
+
+
+
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2019年11月10日 23:06</p>
-        <p>原始链接： <a class="post-url" href="/tages/index.html" title="tags">https://www.wxh520.xyz/tages/index.html</a></p>
+        <p>最后更新： 2019年11月11日 23:19</p>
+        <p>原始链接： <a class="post-url" href="/2019/11/11/JS%E5%8E%9F%E5%9E%8B%EF%BC%8C%E5%8E%9F%E5%9E%8B%E9%93%BE/" title="JS原型,原型链">https://www.wxh520.xyz/2019/11/11/JS%E5%8E%9F%E5%9E%8B%EF%BC%8C%E5%8E%9F%E5%9E%8B%E9%93%BE/</a></p>
         <footer>
             <a href="https://www.wxh520.xyz">
                 <img src="/images/head.jpg" alt="Wxh">
@@ -197,7 +218,7 @@
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://www.wxh520.xyz/tages/&title=《tags》 — Wxh's blog&pic=https://www.wxh520.xyzimages/head.jpg" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://www.wxh520.xyz/2019/11/11/JS%E5%8E%9F%E5%9E%8B%EF%BC%8C%E5%8E%9F%E5%9E%8B%E9%93%BE/&title=《JS原型,原型链》 — Wxh's blog&pic=https://www.wxh520.xyzimages/head.jpg" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -207,22 +228,22 @@
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://www.wxh520.xyz/tages/&title=《tags》 — Wxh's blog&source=专注 WEB 开发的技术博客" data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://www.wxh520.xyz/2019/11/11/JS%E5%8E%9F%E5%9E%8B%EF%BC%8C%E5%8E%9F%E5%9E%8B%E9%93%BE/&title=《JS原型,原型链》 — Wxh's blog&source=专注 WEB 开发的技术博客" data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
           <li>
-            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://www.wxh520.xyz/tages/" data-title="Facebook">
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://www.wxh520.xyz/2019/11/11/JS%E5%8E%9F%E5%9E%8B%EF%BC%8C%E5%8E%9F%E5%9E%8B%E9%93%BE/" data-title="Facebook">
               <i class="fa fa-facebook"></i>
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《tags》 — Wxh's blog&url=https://www.wxh520.xyz/tages/&via=https://www.wxh520.xyz" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JS原型,原型链》 — Wxh's blog&url=https://www.wxh520.xyz/2019/11/11/JS%E5%8E%9F%E5%9E%8B%EF%BC%8C%E5%8E%9F%E5%9E%8B%E9%93%BE/&via=https://www.wxh520.xyz" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
           <li>
-            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://www.wxh520.xyz/tages/" data-title="Google+">
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://www.wxh520.xyz/2019/11/11/JS%E5%8E%9F%E5%9E%8B%EF%BC%8C%E5%8E%9F%E5%9E%8B%E9%93%BE/" data-title="Google+">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -232,7 +253,7 @@
 <div class="post-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;" target="_blank" rel="noopener" id="wxShare-close">×</a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://www.wxh520.xyz/tages/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://www.wxh520.xyz/2019/11/11/JS%E5%8E%9F%E5%9E%8B%EF%BC%8C%E5%8E%9F%E5%9E%8B%E9%93%BE/" alt="微信分享二维码">
 </div>
 
 <div class="mask"></div>
@@ -241,6 +262,13 @@
         <ul class="article-footer-menu">
             
             
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/JS基础/" class="color5">JS基础</a>
+      
+  </li>
+
         </ul>
         
     </footer>
@@ -248,6 +276,22 @@
 </article>
 
 
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#javascript原型、原型链？有什么特点"><span class="post-toc-text">javascript原型、原型链？有什么特点</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+  
+    <a href="/2019/11/11/JS%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">JS面试题</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
 
 
 
