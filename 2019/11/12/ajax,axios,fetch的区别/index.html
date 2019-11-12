@@ -3,23 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>JS原型,原型链 | Wxh&#39;s blog</title>
+  <title>ajax，axios，fetch的区别 | Wxh&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
     <meta name="keywords" content="MinHow,MinHow's Blog" />
   
-  <meta name="description" content="javascript原型、原型链？有什么特点每个函数都有一个==prototype==属性，函数的prototype属性指向了一个对象，这个对象正是调用该构造函数而创建的实例原型 那么什么是原型呢？你可以这样理解：每一个JavaScript对象（null除外）在创建的时候就会与之关联另一个对象，这个对象就是我们所说的原型，每一个对象都会从原型”继承”属性。 这是每一个javaScript对象（除了">
-<meta name="keywords" content="JS基础">
+  <meta name="description" content="昨天同事和我探讨有关axios方面的问题，今天想了想把这3种方法总结一下 1.JQuery ajax12345678$.ajax(&amp;#123;   type: &amp;apos;POST&amp;apos;,   url: url,   data: data,   dataType: dataType,   success: function () &amp;#123;&amp;#125;,   error: function">
+<meta name="keywords" content="交互">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JS原型,原型链">
-<meta property="og:url" content="https:&#x2F;&#x2F;www.wxh520.xyz&#x2F;2019&#x2F;11&#x2F;11&#x2F;JS%E5%8E%9F%E5%9E%8B%EF%BC%8C%E5%8E%9F%E5%9E%8B%E9%93%BE&#x2F;index.html">
+<meta property="og:title" content="ajax，axios，fetch的区别">
+<meta property="og:url" content="https:&#x2F;&#x2F;www.wxh520.xyz&#x2F;2019&#x2F;11&#x2F;12&#x2F;ajax,axios,fetch%E7%9A%84%E5%8C%BA%E5%88%AB&#x2F;index.html">
 <meta property="og:site_name" content="Wxh&#39;s blog">
-<meta property="og:description" content="javascript原型、原型链？有什么特点每个函数都有一个==prototype==属性，函数的prototype属性指向了一个对象，这个对象正是调用该构造函数而创建的实例原型 那么什么是原型呢？你可以这样理解：每一个JavaScript对象（null除外）在创建的时候就会与之关联另一个对象，这个对象就是我们所说的原型，每一个对象都会从原型”继承”属性。 这是每一个javaScript对象（除了">
+<meta property="og:description" content="昨天同事和我探讨有关axios方面的问题，今天想了想把这3种方法总结一下 1.JQuery ajax12345678$.ajax(&amp;#123;   type: &amp;apos;POST&amp;apos;,   url: url,   data: data,   dataType: dataType,   success: function () &amp;#123;&amp;#125;,   error: function">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20191111223745632.png?x-oss-process=image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDYzNjU5Ng==,size_16,color_FFFFFF,t_70">
-<meta property="og:updated_time" content="2019-11-11T15:19:41.748Z">
+<meta property="og:updated_time" content="2019-11-12T02:40:28.191Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20191111223745632.png?x-oss-process=image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDYzNjU5Ng==,size_16,color_FFFFFF,t_70">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -110,14 +108,14 @@
     </div>
 </header>
       <div class="outer">
-        <section id="main" class="body-wrap"><article id="post-JS原型，原型链" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main" class="body-wrap"><article id="post-ajax,axios,fetch的区别" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="post-title" itemprop="name">
-      JS原型,原型链
+      ajax，axios，fetch的区别
     </h1>
     <div class="post-title-bar">
       <ul>
@@ -125,12 +123,12 @@
               <li>
                   <i class="fa fa-book"></i>
                   
-                      <a href="/categories/JS基础/">JS基础</a>
+                      <a href="/categories/数据请求/">数据请求</a>
                   
               </li>
           
         <li>
-          <i class="fa fa-calendar"></i>  2019-11-11
+          <i class="fa fa-calendar"></i>  2019-11-12
         </li>
         <li>
           <i class="fa fa-eye"></i>
@@ -146,22 +144,54 @@
     <div class="article-entry post-content" itemprop="articleBody">
       
             
-            <h1 id="javascript原型、原型链？有什么特点"><a href="#javascript原型、原型链？有什么特点" class="headerlink" title="javascript原型、原型链？有什么特点"></a>javascript原型、原型链？有什么特点</h1><p>每个函数都有一个==prototype==属性，函数的prototype属性指向了一个对象，这个对象正是调用该构造函数而创建的实例原型</p>
-<p>那么什么是原型呢？你可以这样理解：每一个JavaScript对象（null除外）在创建的时候就会与之关联另一个对象，这个对象就是我们所说的原型，每一个对象都会从原型”继承”属性。</p>
-<p>这是每一个javaScript对象（除了null）都具有的一个属性，叫<em>proto</em>,这个属性会指向该对象的原型。<br><img src="https://img-blog.csdnimg.cn/20191111223745632.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDYzNjU5Ng==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<p>原型链解决的主要是继承问题。<br>每个对象拥有一个原型对象，通过proto指针指向其原型对象，并从中继承方法和属性，同时原型对象也可能拥有原型，一样一层一层，最终指向null（Object.prototype.proto指向的是null）。<br>这种关系被称为原型链（prototype chain），通过原型链一个对象拥有定义在其他对象中的属性和方法。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function Person() &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">var person = new Person();</span><br><span class="line">console.log(person.__proto__ === Person.prototype); // true</span><br></pre></td></tr></table></figure>
+            <p>昨天同事和我探讨有关axios方面的问题，今天想了想把这3种方法总结一下</p>
+<h2 id="1-JQuery-ajax"><a href="#1-JQuery-ajax" class="headerlink" title="1.JQuery ajax"></a>1.JQuery ajax</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">   type: &apos;POST&apos;,</span><br><span class="line">   url: url,</span><br><span class="line">   data: data,</span><br><span class="line">   dataType: dataType,</span><br><span class="line">   success: function () &#123;&#125;,</span><br><span class="line">   error: function () &#123;&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>优缺点：</p>
+<ul>
+<li>本身是针对MVC的编程,不符合现在前端MVVM的浪潮 </li>
+<li>基于原生的XHR开发，XHR本身的架构不清晰，已经有了fetch的替代方案</li>
+<li>JQuery整个项目太大，单纯使用ajax却要引入整个JQuery非常的不合理（采取个性化打包的方案又不能享受CDN服务）</li>
+</ul>
+<h2 id="axios"><a href="#axios" class="headerlink" title="axios"></a>axios</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">axios(&#123;</span><br><span class="line">    method: &apos;post&apos;,</span><br><span class="line">    url: &apos;/user/12345&apos;,</span><br><span class="line">    data: &#123;</span><br><span class="line">        firstName: &apos;Fred&apos;,</span><br><span class="line">        lastName: &apos;Flintstone&apos;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">.then(function (response) &#123;</span><br><span class="line">    console.log(response);</span><br><span class="line">&#125;)</span><br><span class="line">.catch(function (error) &#123;</span><br><span class="line">    console.log(error);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>Vue2.0之后，尤雨溪推荐大家用axios替换JQuery ajax，想必让axios进入了很多人的目光中。<br>axios 是一个基于Promise 用于浏览器和 nodejs 的 HTTP 客户端，本质上也是对原生XHR的封装，只不过它是Promise的实现版本，符合最新的ES规范，它本身具有以下特征：</p>
+<ol>
+<li>从浏览器中创建XMLHttpRequest（XHR—小黄人）</li>
+<li>支持Promise API</li>
+<li>客户端支持防止CSRF</li>
+<li>提供了一些并发请求的接口（很重要，方便了很多的操作）</li>
+<li>从node.js创建http请求</li>
+<li>拦截响应和请求</li>
+<li>转换请求和响应数据</li>
+<li>取消请求</li>
+<li>自动转换JSON数据</li>
+</ol>
+<p> <strong>PS:防止CSRF:就是让你的每个请求都带一个从cookie中拿到的key, 根据浏览器同源策略，假冒的网站是拿不到你cookie中得key的，这样，后台就可以轻松辨别出这个请求是否是用户在假冒网站上的误导输入，从而采取正确的策略。</strong></p>
+<h2 id="fetch"><a href="#fetch" class="headerlink" title="fetch"></a>fetch</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">try &#123;</span><br><span class="line">  let response = await fetch(url);</span><br><span class="line">  let data = response.json();</span><br><span class="line">  console.log(data);</span><br><span class="line">&#125; catch(e) &#123;</span><br><span class="line">  console.log(&quot;Oops, error&quot;, e);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>fetch号称是AJAX的替代品，是在ES6出现的，使用了ES6中的promise对象。Fetch是基于promise设计的。Fetch的代码结构比起ajax简单多了，参数有点像jQuery ajax。但是，一定记住fetch不是ajax的进一步封装，而是原生js，没有使用XMLHttpRequest对象。</p>
+<p>fetch的优点:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">try &#123;</span><br><span class="line">  let response = await fetch(url);</span><br><span class="line">  let data = response.json();</span><br><span class="line">  console.log(data);</span><br><span class="line">&#125; catch(e) &#123;</span><br><span class="line">  console.log(&quot;Oops, error&quot;, e);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function Person() &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">console.log(Person === Person.prototype.constructor); // true</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function Person() &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var person = new Person();</span><br><span class="line"></span><br><span class="line">console.log(person.__proto__ == Person.prototype) // true</span><br><span class="line">console.log(Person.prototype.constructor == Person) // true</span><br><span class="line">// 顺便学习一个ES5的方法,可以获得对象的原型</span><br><span class="line">console.log(Object.getPrototypeOf(person) === Person.prototype) // true</span><br></pre></td></tr></table></figure>
-
-
+<ul>
+<li>符合关注分离，没有将输入、输出和用事件来跟踪的状态混杂在一个对象里</li>
+<li>更好更方便的写法</li>
+<li>更加底层，提供的API丰富（request,response）</li>
+<li>脱离了XHR，是ES规范里新的实现方式</li>
+</ul>
+<ul>
+<li><p>1）fetchtch只对网络请求报错，对400，500都当做成功的请求，需要封装去处理</p>
+<ul>
+<li>2）fetch默认不会带cookie，需要添加配置项</li>
+<li>3）fetch不支持abort，不支持超时控制，使用setTimeout及Promise.reject的实现的超时控制并不能阻止请求过程继续在后台运行，造成了量的浪费</li>
+<li>4）fetch没有办法原生监测请求的进度，而XHR可以</li>
+</ul>
+<p><strong>总结：axios既提供了并发的封装，也没有fetch的各种问题，而且体积也较小，当之无愧现在最应该选用的请求的方式。</strong></p>
+</li>
+</ul>
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2019年11月11日 23:19</p>
-        <p>原始链接： <a class="post-url" href="/2019/11/11/JS%E5%8E%9F%E5%9E%8B%EF%BC%8C%E5%8E%9F%E5%9E%8B%E9%93%BE/" title="JS原型,原型链">https://www.wxh520.xyz/2019/11/11/JS%E5%8E%9F%E5%9E%8B%EF%BC%8C%E5%8E%9F%E5%9E%8B%E9%93%BE/</a></p>
+        <p>最后更新： 2019年11月12日 10:40</p>
+        <p>原始链接： <a class="post-url" href="/2019/11/12/ajax,axios,fetch%E7%9A%84%E5%8C%BA%E5%88%AB/" title="ajax，axios，fetch的区别">https://www.wxh520.xyz/2019/11/12/ajax,axios,fetch%E7%9A%84%E5%8C%BA%E5%88%AB/</a></p>
         <footer>
             <a href="https://www.wxh520.xyz">
                 <img src="/images/head.jpg" alt="Wxh">
@@ -218,7 +248,7 @@
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://www.wxh520.xyz/2019/11/11/JS%E5%8E%9F%E5%9E%8B%EF%BC%8C%E5%8E%9F%E5%9E%8B%E9%93%BE/&title=《JS原型,原型链》 — Wxh's blog&pic=https://www.wxh520.xyzimages/head.jpg" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://www.wxh520.xyz/2019/11/12/ajax,axios,fetch%E7%9A%84%E5%8C%BA%E5%88%AB/&title=《ajax，axios，fetch的区别》 — Wxh's blog&pic=https://www.wxh520.xyzimages/head.jpg" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -228,22 +258,22 @@
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://www.wxh520.xyz/2019/11/11/JS%E5%8E%9F%E5%9E%8B%EF%BC%8C%E5%8E%9F%E5%9E%8B%E9%93%BE/&title=《JS原型,原型链》 — Wxh's blog&source=专注 WEB 开发的技术博客" data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://www.wxh520.xyz/2019/11/12/ajax,axios,fetch%E7%9A%84%E5%8C%BA%E5%88%AB/&title=《ajax，axios，fetch的区别》 — Wxh's blog&source=专注 WEB 开发的技术博客" data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
           <li>
-            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://www.wxh520.xyz/2019/11/11/JS%E5%8E%9F%E5%9E%8B%EF%BC%8C%E5%8E%9F%E5%9E%8B%E9%93%BE/" data-title="Facebook">
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://www.wxh520.xyz/2019/11/12/ajax,axios,fetch%E7%9A%84%E5%8C%BA%E5%88%AB/" data-title="Facebook">
               <i class="fa fa-facebook"></i>
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JS原型,原型链》 — Wxh's blog&url=https://www.wxh520.xyz/2019/11/11/JS%E5%8E%9F%E5%9E%8B%EF%BC%8C%E5%8E%9F%E5%9E%8B%E9%93%BE/&via=https://www.wxh520.xyz" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ajax，axios，fetch的区别》 — Wxh's blog&url=https://www.wxh520.xyz/2019/11/12/ajax,axios,fetch%E7%9A%84%E5%8C%BA%E5%88%AB/&via=https://www.wxh520.xyz" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
           <li>
-            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://www.wxh520.xyz/2019/11/11/JS%E5%8E%9F%E5%9E%8B%EF%BC%8C%E5%8E%9F%E5%9E%8B%E9%93%BE/" data-title="Google+">
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://www.wxh520.xyz/2019/11/12/ajax,axios,fetch%E7%9A%84%E5%8C%BA%E5%88%AB/" data-title="Google+">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -253,7 +283,7 @@
 <div class="post-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;" target="_blank" rel="noopener" id="wxShare-close">×</a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://www.wxh520.xyz/2019/11/11/JS%E5%8E%9F%E5%9E%8B%EF%BC%8C%E5%8E%9F%E5%9E%8B%E9%93%BE/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://www.wxh520.xyz/2019/11/12/ajax,axios,fetch%E7%9A%84%E5%8C%BA%E5%88%AB/" alt="微信分享二维码">
 </div>
 
 <div class="mask"></div>
@@ -265,7 +295,7 @@
   <li class="article-footer-tags">
     <i class="fa fa-tags"></i>
       
-    <a href="/tags/JS基础/" class="color5">JS基础</a>
+    <a href="/tags/交互/" class="color3">交互</a>
       
   </li>
 
@@ -278,26 +308,16 @@
 
     <aside class="post-toc-pos post-toc-top" id="post-toc">
         <nav class="post-toc-wrap">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#javascript原型、原型链？有什么特点"><span class="post-toc-text">javascript原型、原型链？有什么特点</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-JQuery-ajax"><span class="post-toc-text">1.JQuery ajax</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#axios"><span class="post-toc-text">axios</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#fetch"><span class="post-toc-text">fetch</span></a></li></ol>
         </nav>
     </aside>
     
 
 <nav id="article-nav">
   
-    <a href="/2019/11/12/ajax,axios,fetch%E7%9A%84%E5%8C%BA%E5%88%AB/" id="article-nav-newer" class="article-nav-link-wrap">
-
-      <span class="article-nav-title">
-        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
-        
-          ajax，axios，fetch的区别
-        
-      </span>
-    </a>
   
-  
-    <a href="/2019/11/11/JS%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/" id="article-nav-older" class="article-nav-link-wrap">
-      <span class="article-nav-title">JS面试题</span>
+    <a href="/2019/11/11/JS%E5%8E%9F%E5%9E%8B%EF%BC%8C%E5%8E%9F%E5%9E%8B%E9%93%BE/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">JS原型,原型链</span>
       <i class="fa fa-hand-o-right" aria-hidden="true"></i>
     </a>
   
