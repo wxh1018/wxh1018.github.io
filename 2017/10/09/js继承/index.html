@@ -16,10 +16,10 @@
 <meta property="og:site_name" content="Wxh&#39;s blog">
 <meta property="og:description" content="js中的new()到底做了些什么？？要创建 Person 的新实例，必须使用 new 操作符。以这种方式调用构造函数实际上会经历以下 4个步骤：(1) 创建一个新对象；(2) 将构造函数的作用域赋给新对象（因此 this 就指向了这个新对象） ；(3) 执行构造函数中的代码（为这个新对象添加属性） ；(4) 返回新对象。 new 操作符在有上面的基础概念的介绍之后，在加上new操作符，我们就能完成">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https:&#x2F;&#x2F;www.wxh520.xyz&#x2F;2017&#x2F;10&#x2F;09&#x2F;js%E7%BB%A7%E6%89%BF&#x2F;joo_3.png">
-<meta property="og:updated_time" content="2019-11-21T15:23:51.955Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.wxh520.xyz&#x2F;2017&#x2F;10&#x2F;09&#x2F;js%E7%BB%A7%E6%89%BF&#x2F;joo.png">
+<meta property="og:updated_time" content="2019-11-21T15:28:48.367Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;www.wxh520.xyz&#x2F;2017&#x2F;10&#x2F;09&#x2F;js%E7%BB%A7%E6%89%BF&#x2F;joo_3.png">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;www.wxh520.xyz&#x2F;2017&#x2F;10&#x2F;09&#x2F;js%E7%BB%A7%E6%89%BF&#x2F;joo.png">
   
   
     <link rel="icon" href="https://upload.jianshu.io/users/upload_avatars/14004175/57e0126e-5f66-43b5-9be8-4d23e87c44ce.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/80/h/80/format/webp">
@@ -142,7 +142,7 @@
             <h3 id="js中的new-到底做了些什么？？"><a href="#js中的new-到底做了些什么？？" class="headerlink" title="js中的new()到底做了些什么？？"></a>js中的new()到底做了些什么？？</h3><h4 id="要创建-Person-的新实例，必须使用-new-操作符。以这种方式调用构造函数实际上会经历以下-4"><a href="#要创建-Person-的新实例，必须使用-new-操作符。以这种方式调用构造函数实际上会经历以下-4" class="headerlink" title="要创建 Person 的新实例，必须使用 new 操作符。以这种方式调用构造函数实际上会经历以下 4"></a>要创建 Person 的新实例，必须使用 new 操作符。以这种方式调用构造函数实际上会经历以下 4</h4><p>个步骤：<br>(1) 创建一个新对象；<br>(2) 将构造函数的作用域赋给新对象（因此 this 就指向了这个新对象） ；<br>(3) 执行构造函数中的代码（为这个新对象添加属性） ；<br>(4) 返回新对象。</p>
 <h4 id="new-操作符"><a href="#new-操作符" class="headerlink" title="new 操作符"></a>new 操作符</h4><p>在有上面的基础概念的介绍之后，在加上new操作符，我们就能完成传统面向对象的class + new的方式创建对象，在JavaScript中，我们将这类方式成为Pseudoclassical。<br>基于上面的例子，我们执行如下代码</p>
 <p>var obj = new Base();</p>
-<p>这样代码的结果是什么，我们在Javascript引擎中看到的对象模型是：<br><img src="joo_3.png" alt="a"></p>
+<p>这样代码的结果是什么，我们在Javascript引擎中看到的对象模型是：<br><img src="joo.png" alt="a"></p>
 <p>new操作符具体干了什么呢?其实很简单，就干了三件事情。</p>
 <p>var obj  = {};<br>obj.<strong>proto</strong> = Base.prototype;<br>Base.call(obj);</p>
 <p>第一行，我们创建了一个空对象obj<br>第二行，我们将这个空对象的<strong>proto</strong>成员指向了Base函数对象prototype成员对象<br>第三行，我们将Base函数对象的this指针替换成obj，然后再调用Base函数，于是我们就给obj对象赋值了一个id成员变量，这个成员变量的值是”base”，关于call函数的用法。</p>
@@ -152,7 +152,7 @@
 <h4 id="构造子中，我们来设置‘类’的成员变量（例如：例子中的id），构造子对象prototype中我们来设置‘类’的公共方法。于是通过函数对象和Javascript特有的proto与prototype成员及new操作符，模拟出类和类实例化的效果。"><a href="#构造子中，我们来设置‘类’的成员变量（例如：例子中的id），构造子对象prototype中我们来设置‘类’的公共方法。于是通过函数对象和Javascript特有的proto与prototype成员及new操作符，模拟出类和类实例化的效果。" class="headerlink" title="构造子中，我们来设置‘类’的成员变量（例如：例子中的id），构造子对象prototype中我们来设置‘类’的公共方法。于是通过函数对象和Javascript特有的proto与prototype成员及new操作符，模拟出类和类实例化的效果。"></a>构造子中，我们来设置‘类’的成员变量（例如：例子中的id），构造子对象prototype中我们来设置‘类’的公共方法。于是通过函数对象和Javascript特有的<strong>proto</strong>与prototype成员及new操作符，模拟出类和类实例化的效果。</h4>
             <div class="post-copyright">
     <div class="content">
-        <!-- <p>最后更新： 2019年11月21日 23:23</p> -->
+        <!-- <p>最后更新： 2019年11月21日 23:28</p> -->
         <p>原始链接： <a class="post-url" href="/2017/10/09/js%E7%BB%A7%E6%89%BF/" title="js中的new()到底做了些什么？？">https://www.wxh520.xyz/2017/10/09/js%E7%BB%A7%E6%89%BF/</a></p>
         <footer>
             <a href="https://www.wxh520.xyz">
