@@ -8,16 +8,16 @@
   
     <meta name="keywords" content="blog,web前端,wxh's Blog" />
   
-  <meta name="description" content="js中的new()到底做了些什么？？要创建 Person 的新实例，必须使用 new 操作符。以这种方式调用构造函数实际上会经历以下 4个步骤：(1) 创建一个新对象；(2) 将构造函数的作用域赋给新对象（因此 this 就指向了这个新对象） ；(3) 执行构造函数中的代码（为这个新对象添加属性） ；(4) 返回新对象。 new 操作符在有上面的基础概念的介绍之后，在加上new操作符，我们就能完成">
+  <meta name="description" content="js中的new()到底做了些什么？？要创建 Person 的新实例，必须使用 new 操作符。以这种方式调用构造函数实际上会经历以下 4个步骤：(1) 创建一个新对象；(2) 将构造函数的作用域赋给新对象（因此 this 就指向了这个新对象） ；(3) 执行构造函数中的代码（为这个新对象添加属性） ；(4) 返回新对象。  hghgh  new 操作符在有上面的基础概念的介绍之后，在加上new操作">
 <meta name="keywords" content="继承">
 <meta property="og:type" content="article">
 <meta property="og:title" content="js中的new()到底做了些什么？？">
 <meta property="og:url" content="https:&#x2F;&#x2F;www.wxh520.xyz&#x2F;2017&#x2F;10&#x2F;09&#x2F;js%E7%BB%A7%E6%89%BF&#x2F;index.html">
 <meta property="og:site_name" content="Wxh&#39;s blog">
-<meta property="og:description" content="js中的new()到底做了些什么？？要创建 Person 的新实例，必须使用 new 操作符。以这种方式调用构造函数实际上会经历以下 4个步骤：(1) 创建一个新对象；(2) 将构造函数的作用域赋给新对象（因此 this 就指向了这个新对象） ；(3) 执行构造函数中的代码（为这个新对象添加属性） ；(4) 返回新对象。 new 操作符在有上面的基础概念的介绍之后，在加上new操作符，我们就能完成">
+<meta property="og:description" content="js中的new()到底做了些什么？？要创建 Person 的新实例，必须使用 new 操作符。以这种方式调用构造函数实际上会经历以下 4个步骤：(1) 创建一个新对象；(2) 将构造函数的作用域赋给新对象（因此 this 就指向了这个新对象） ；(3) 执行构造函数中的代码（为这个新对象添加属性） ；(4) 返回新对象。  hghgh  new 操作符在有上面的基础概念的介绍之后，在加上new操作">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https:&#x2F;&#x2F;www.wxh520.xyz&#x2F;2017&#x2F;10&#x2F;09&#x2F;js%E7%BB%A7%E6%89%BF&#x2F;joo.png">
-<meta property="og:updated_time" content="2019-11-23T12:04:49.281Z">
+<meta property="og:updated_time" content="2019-11-24T03:32:39.335Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;www.wxh520.xyz&#x2F;2017&#x2F;10&#x2F;09&#x2F;js%E7%BB%A7%E6%89%BF&#x2F;joo.png">
   
@@ -140,6 +140,9 @@
       
             
             <h3 id="js中的new-到底做了些什么？？"><a href="#js中的new-到底做了些什么？？" class="headerlink" title="js中的new()到底做了些什么？？"></a>js中的new()到底做了些什么？？</h3><h4 id="要创建-Person-的新实例，必须使用-new-操作符。以这种方式调用构造函数实际上会经历以下-4"><a href="#要创建-Person-的新实例，必须使用-new-操作符。以这种方式调用构造函数实际上会经历以下-4" class="headerlink" title="要创建 Person 的新实例，必须使用 new 操作符。以这种方式调用构造函数实际上会经历以下 4"></a>要创建 Person 的新实例，必须使用 new 操作符。以这种方式调用构造函数实际上会经历以下 4</h4><p>个步骤：<br>(1) 创建一个新对象；<br>(2) 将构造函数的作用域赋给新对象（因此 this 就指向了这个新对象） ；<br>(3) 执行构造函数中的代码（为这个新对象添加属性） ；<br>(4) 返回新对象。</p>
+<blockquote>
+<p>hghgh</p>
+</blockquote>
 <h4 id="new-操作符"><a href="#new-操作符" class="headerlink" title="new 操作符"></a>new 操作符</h4><p>在有上面的基础概念的介绍之后，在加上new操作符，我们就能完成传统面向对象的class + new的方式创建对象，在JavaScript中，我们将这类方式成为Pseudoclassical。<br>基于上面的例子，我们执行如下代码</p>
 <p>var obj = new Base();</p>
 <p>这样代码的结果是什么，我们在Javascript引擎中看到的对象模型是：<br><img src="joo.png" alt="a"></p>
@@ -152,7 +155,7 @@
 <h4 id="构造子中，我们来设置‘类’的成员变量（例如：例子中的id），构造子对象prototype中我们来设置‘类’的公共方法。于是通过函数对象和Javascript特有的proto与prototype成员及new操作符，模拟出类和类实例化的效果。"><a href="#构造子中，我们来设置‘类’的成员变量（例如：例子中的id），构造子对象prototype中我们来设置‘类’的公共方法。于是通过函数对象和Javascript特有的proto与prototype成员及new操作符，模拟出类和类实例化的效果。" class="headerlink" title="构造子中，我们来设置‘类’的成员变量（例如：例子中的id），构造子对象prototype中我们来设置‘类’的公共方法。于是通过函数对象和Javascript特有的proto与prototype成员及new操作符，模拟出类和类实例化的效果。"></a>构造子中，我们来设置‘类’的成员变量（例如：例子中的id），构造子对象prototype中我们来设置‘类’的公共方法。于是通过函数对象和Javascript特有的<strong>proto</strong>与prototype成员及new操作符，模拟出类和类实例化的效果。</h4>
             <div class="post-copyright">
     <div class="content">
-        <!-- <p>最后更新： 2019年11月23日 20:04</p> -->
+        <!-- <p>最后更新： 2019年11月24日 11:32</p> -->
         <p>原始链接： <a class="post-url" href="/2017/10/09/js%E7%BB%A7%E6%89%BF/" title="js中的new()到底做了些什么？？">https://www.wxh520.xyz/2017/10/09/js%E7%BB%A7%E6%89%BF/</a></p>
         <footer>
             <a href="https://www.wxh520.xyz">
@@ -349,7 +352,7 @@
             <a class="category-link" href="/categories/JS/">JS</a><a class="category-link" href="/categories/JS%E5%9F%BA%E7%A1%80/">JS基础</a><a class="category-link" href="/categories/React/">React</a><a class="category-link" href="/categories/vue/">vue</a><a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E8%AF%B7%E6%B1%82/">数据请求</a>
         </div>
         <div id="sidebar-menu-box-tags">
-            <a href="/tags/Hook/" style="font-size: 10px;">Hook</a> <a href="/tags/JS%E5%9F%BA%E7%A1%80/" style="font-size: 10px;">JS基础</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/%E4%BA%A4%E4%BA%92/" style="font-size: 10px;">交互</a> <a href="/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 10px;">博客</a> <a href="/tags/%E5%9F%BA%E7%A1%80/" style="font-size: 10px;">基础</a> <a href="/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/" style="font-size: 10px;">开源项目</a> <a href="/tags/%E7%BB%A7%E6%89%BF/" style="font-size: 10px;">继承</a> <a href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/" style="font-size: 10px;">面试题</a>
+            <a href="/tags/Hook/" style="font-size: 10px;">Hook</a> <a href="/tags/JS%E5%9F%BA%E7%A1%80/" style="font-size: 10px;">JS基础</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/%E4%BA%A4%E4%BA%92/" style="font-size: 10px;">交互</a> <a href="/tags/%E4%BC%98%E5%8C%96/" style="font-size: 10px;">优化</a> <a href="/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 10px;">博客</a> <a href="/tags/%E5%9F%BA%E7%A1%80/" style="font-size: 10px;">基础</a> <a href="/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/" style="font-size: 10px;">开源项目</a> <a href="/tags/%E7%BB%A7%E6%89%BF/" style="font-size: 10px;">继承</a> <a href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/" style="font-size: 10px;">面试题</a>
         </div>
     </div>
     <a href="javascript:;" target="_blank" rel="noopener" class="sidebar-menu-box-close">&times;</a>
@@ -382,7 +385,7 @@
     <div class="mobile-header-tag-container">
         <span class="title">Tags</span>
         <div id="mobile-header-container-tags">
-            <a href="/tags/Hook/" style="font-size: 10px;">Hook</a> <a href="/tags/JS%E5%9F%BA%E7%A1%80/" style="font-size: 10px;">JS基础</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/%E4%BA%A4%E4%BA%92/" style="font-size: 10px;">交互</a> <a href="/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 10px;">博客</a> <a href="/tags/%E5%9F%BA%E7%A1%80/" style="font-size: 10px;">基础</a> <a href="/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/" style="font-size: 10px;">开源项目</a> <a href="/tags/%E7%BB%A7%E6%89%BF/" style="font-size: 10px;">继承</a> <a href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/" style="font-size: 10px;">面试题</a>
+            <a href="/tags/Hook/" style="font-size: 10px;">Hook</a> <a href="/tags/JS%E5%9F%BA%E7%A1%80/" style="font-size: 10px;">JS基础</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/%E4%BA%A4%E4%BA%92/" style="font-size: 10px;">交互</a> <a href="/tags/%E4%BC%98%E5%8C%96/" style="font-size: 10px;">优化</a> <a href="/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 10px;">博客</a> <a href="/tags/%E5%9F%BA%E7%A1%80/" style="font-size: 10px;">基础</a> <a href="/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/" style="font-size: 10px;">开源项目</a> <a href="/tags/%E7%BB%A7%E6%89%BF/" style="font-size: 10px;">继承</a> <a href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/" style="font-size: 10px;">面试题</a>
         </div>
     </div>
 </div>
