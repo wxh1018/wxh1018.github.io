@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>前端导出表格的几种方法 | Wxh&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="blog,web前端,wxh's Blog" />
+  
+  <meta name="description" content="前端导出表格的几种方法前言：            最近工作上有这个需求，然后就上网查了下，搜集一下几种方法 一，单表格下载(xlsx) 安装依赖1npm install  xlsx file-saver  --save 引入  12import FileSaver from &amp;apos;file-saver&amp;apos;import XLSX from &amp;apos;xlsx&amp;apos; 1234567891011121314151617">
+<meta name="keywords" content="table导出">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端导出表格的几种方法">
+<meta property="og:url" content="https:&#x2F;&#x2F;www.wxh520.xyz&#x2F;2020&#x2F;06&#x2F;17&#x2F;%E5%89%8D%E7%AB%AF%E5%AF%BC%E5%87%BA%E8%A1%A8%E6%A0%BC%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E6%B3%95&#x2F;index.html">
+<meta property="og:site_name" content="Wxh&#39;s blog">
+<meta property="og:description" content="前端导出表格的几种方法前言：            最近工作上有这个需求，然后就上网查了下，搜集一下几种方法 一，单表格下载(xlsx) 安装依赖1npm install  xlsx file-saver  --save 引入  12import FileSaver from &amp;apos;file-saver&amp;apos;import XLSX from &amp;apos;xlsx&amp;apos; 1234567891011121314151617">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-06-17T11:58:06.043Z">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="https://upload.jianshu.io/users/upload_avatars/14004175/57e0126e-5f66-43b5-9be8-4d23e87c44ce.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/80/h/80/format/webp">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Wxh&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/head1.jpg" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        Wxh&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        一个专注 WEB 开发的技术博客
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="MinHow" target="_blank" href="//wxh520.xyz">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//github.com/wxh1018">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" ">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="Twitter" target="_blank" ">
+                            <i class="fa fa-twitter fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-前端导出表格的几种方法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      前端导出表格的几种方法
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/Table/">Table</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2020-06-17
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h2 id="前端导出表格的几种方法"><a href="#前端导出表格的几种方法" class="headerlink" title="前端导出表格的几种方法"></a>前端导出表格的几种方法</h2><p><strong>前言</strong>：<br>            最近工作上有这个需求，然后就上网查了下，搜集一下几种方法</p>
+<h3 id="一，单表格下载-xlsx"><a href="#一，单表格下载-xlsx" class="headerlink" title="一，单表格下载(xlsx)"></a>一，单表格下载(xlsx)</h3><ol>
+<li>安装依赖<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install  xlsx file-saver  --save</span><br></pre></td></tr></table></figure></li>
+<li>引入</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> FileSaver <span class="keyword">from</span> <span class="string">'file-saver'</span></span><br><span class="line"><span class="keyword">import</span> XLSX <span class="keyword">from</span> <span class="string">'xlsx'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">download() &#123;</span><br><span class="line">   <span class="comment">//此处传入table的DOM节点</span></span><br><span class="line">  <span class="keyword">let</span> et = XLSX.utils.table_to_book(<span class="built_in">document</span>.getElementById(<span class="string">"outtable"</span>));</span><br><span class="line">  <span class="keyword">let</span> etout = XLSX.write(et, &#123;</span><br><span class="line">    bookType: <span class="string">"xlsx"</span>,</span><br><span class="line">    bookSST: <span class="literal">true</span>,</span><br><span class="line">    type: <span class="string">"array"</span></span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">      FileSaver.saveAs(</span><br><span class="line">        <span class="keyword">new</span> Blob([etout], &#123;</span><br><span class="line">          type: <span class="string">"application/octet-stream"</span></span><br><span class="line">        &#125;),</span><br><span class="line">        <span class="string">`<span class="subst">$&#123;<span class="keyword">this</span>.search_val&#125;</span>.xlsx`</span></span><br><span class="line">      ); <span class="comment">//trade-publish.xlsx 为导出的文件名</span></span><br><span class="line">  &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(e, etout);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> etout;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<h3 id="二，单表格下载-样式"><a href="#二，单表格下载-样式" class="headerlink" title="二，单表格下载+样式"></a>二，单表格下载+样式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> dom1 = <span class="built_in">document</span>.querySelector(<span class="string">'#Table1'</span>)</span><br><span class="line">     tableToExcel(dom1, <span class="string">"统计表"</span>);</span><br><span class="line">     <span class="comment">//替换table数据和worksheet名字</span></span><br><span class="line">     <span class="function"><span class="keyword">function</span> <span class="title">format</span>(<span class="params">s, c</span>) </span>&#123;</span><br><span class="line">       <span class="keyword">return</span> s.replace(<span class="regexp">/&#123;(\w+)&#125;/g</span>, <span class="function"><span class="keyword">function</span>(<span class="params">m, p</span>) </span>&#123;</span><br><span class="line">         <span class="keyword">return</span> c[p];</span><br><span class="line">       &#125;);</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="function"><span class="keyword">function</span> <span class="title">base64</span>(<span class="params">s</span>) </span>&#123;</span><br><span class="line">       <span class="keyword">return</span> <span class="built_in">window</span>.btoa(<span class="built_in">unescape</span>(<span class="built_in">encodeURIComponent</span>(s)));</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     <span class="function"><span class="keyword">function</span> <span class="title">tableToExcel</span>(<span class="params">tableid, sheetName</span>) </span>&#123;</span><br><span class="line">       <span class="keyword">var</span> uri = <span class="string">"data:application/vnd.ms-excel;base64,"</span>;</span><br><span class="line">       <span class="keyword">var</span> template =</span><br><span class="line">         <span class="string">'&lt;html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel"'</span> +</span><br><span class="line">         <span class="string">'xmlns="http://www.w3.org/TR/REC-html40"&gt;&lt;head&gt;&lt;!--[if gte mso 9]&gt;&lt;xml&gt;&lt;x:ExcelWorkbook&gt;&lt;x:ExcelWorksheets&gt;&lt;x:ExcelWorksheet&gt;'</span> +</span><br><span class="line">         <span class="string">"&lt;x:Name&gt;&#123;worksheet&#125;&lt;/x:Name&gt;&lt;x:WorksheetOptions&gt;&lt;x:DisplayGridlines/&gt;&lt;/x:WorksheetOptions&gt;&lt;/x:ExcelWorksheet&gt;&lt;/x:ExcelWorksheets&gt;"</span> +</span><br><span class="line">         <span class="string">"&lt;/x:ExcelWorkbook&gt;&lt;/xml&gt;&lt;![endif]--&gt;"</span> +</span><br><span class="line">         <span class="string">' &lt;style type="text/css"&gt;'</span> +</span><br><span class="line">         <span class="string">"table &#123;"</span> +</span><br><span class="line">         <span class="string">"border: .5pt solid black;"</span> +</span><br><span class="line">         <span class="string">" &#125;"</span> +</span><br><span class="line">         <span class="string">"table td &#123;"</span> +</span><br><span class="line">         <span class="string">"border: .5pt solid black;"</span> +</span><br><span class="line">         <span class="string">"width: 150px;"</span> +</span><br><span class="line">         <span class="string">"height: 25px;"</span> +</span><br><span class="line">         <span class="string">" text-align: center;"</span> +</span><br><span class="line">         <span class="string">"font-size: 13px;"</span> +</span><br><span class="line">         <span class="string">" &#125;"</span> +</span><br><span class="line">         <span class="string">"&lt;/style&gt;"</span> +</span><br><span class="line">         <span class="string">'&lt;/head&gt;&lt;body &gt;&lt;table class="excelTable"&gt;&#123;table&#125;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;'</span>;</span><br><span class="line">       <span class="keyword">var</span> ctx = &#123;</span><br><span class="line">         worksheet: sheetName || <span class="string">"Worksheet"</span>,</span><br><span class="line">         table: tableid.innerHTML</span><br><span class="line">       &#125;;</span><br><span class="line">       <span class="keyword">let</span> a = <span class="built_in">document</span>.createElement(<span class="string">"a"</span>);</span><br><span class="line">       <span class="comment">//表格名字</span></span><br><span class="line">       a.download =</span><br><span class="line">         <span class="string">"统计表.xlsx"</span>;</span><br><span class="line">       a.href = uri + base64(format(template, ctx));</span><br><span class="line">       a.click();</span><br><span class="line">     &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="三，多表格下载（xlsx）"><a href="#三，多表格下载（xlsx）" class="headerlink" title="三，多表格下载（xlsx）"></a>三，多表格下载（xlsx）</h3><h4 id="第一种方法："><a href="#第一种方法：" class="headerlink" title="第一种方法："></a>第一种方法：</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">var</span> workbook = XLSX.utils.book_new();</span><br><span class="line"></span><br><span class="line"><span class="comment">/* convert table 'table1' to worksheet named "Sheet1" */</span></span><br><span class="line"><span class="keyword">var</span> ws1 = XLSX.utils.table_to_sheet(<span class="built_in">document</span>.querySelector(<span class="string">'#Table1'</span>));</span><br><span class="line">XLSX.utils.book_append_sheet(workbook, ws1, <span class="string">"sheet1"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* convert table 'table2' to worksheet named "Sheet2" */</span></span><br><span class="line"><span class="keyword">var</span> ws2 = XLSX.utils.table_to_sheet(<span class="built_in">document</span>.querySelector(<span class="string">'#Table2'</span>));</span><br><span class="line">XLSX.utils.book_append_sheet(workbook, ws2, <span class="string">"sheet2"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* get binary string as output */</span></span><br><span class="line"><span class="keyword">var</span> wbOut = XLSX.write(workbook, &#123;</span><br><span class="line">  bookType: <span class="string">"xlsx"</span>,</span><br><span class="line">  bookSST: <span class="literal">true</span>,</span><br><span class="line">  type: <span class="string">"array"</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  FileSaver.saveAs(</span><br><span class="line">          <span class="keyword">new</span> Blob([wbOut], &#123; <span class="attr">type</span>: <span class="string">"application/octet-stream"</span> &#125;),</span><br><span class="line">          <span class="string">"Demo.xlsx"</span></span><br><span class="line">  );</span><br><span class="line">&#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">console</span> !== <span class="string">"undefined"</span>) <span class="built_in">console</span>.log(e, wbOut);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> wbout;</span><br></pre></td></tr></table></figure>
+<h4 id="第二种方法："><a href="#第二种方法：" class="headerlink" title="第二种方法："></a>第二种方法：</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">exp</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">       tablesToExcel([<span class="string">'tabDiv1'</span>, <span class="string">'tabDiv2'</span>, <span class="string">'tabDiv3'</span>], [<span class="string">'sheet1'</span>, <span class="string">'sheet2'</span>, <span class="string">'sheet3'</span>], <span class="string">"testExport.xls"</span>, <span class="string">"Excel"</span>);</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="comment">//导出excel包含多个sheet</span></span><br><span class="line">   <span class="comment">//tables:tableId的数组;wsbames:sheet的名字数组;wbname:工作簿名字;appname:Excel</span></span><br><span class="line">   <span class="function"><span class="keyword">function</span> <span class="title">tablesToExcel</span>(<span class="params">tables, wsnames, wbname, appname</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">var</span> uri = <span class="string">'data:application/vnd.ms-excel;base64,'</span>,</span><br><span class="line">           tmplWorkbookXML =</span><br><span class="line">           <span class="string">'&lt;?xml version="1.0"?&gt;&lt;?mso-application progid="Excel.Sheet"?&gt;&lt;Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"&gt;'</span> +</span><br><span class="line">           <span class="string">'&lt;DocumentProperties xmlns="urn:schemas-microsoft-com:office:office"&gt;&lt;Author&gt;Axel Richter&lt;/Author&gt;&lt;Created&gt;&#123;created&#125;&lt;/Created&gt;&lt;/DocumentProperties&gt;'</span> +</span><br><span class="line">           <span class="string">'&lt;Styles&gt;'</span> +</span><br><span class="line">           <span class="string">'&lt;Style ss:ID="Currency"&gt;&lt;NumberFormat ss:Format="Currency"&gt;&lt;/NumberFormat&gt;&lt;/Style&gt;'</span> +</span><br><span class="line">           <span class="string">'&lt;Style ss:ID="Date"&gt;&lt;NumberFormat ss:Format="Medium Date"&gt;&lt;/NumberFormat&gt;&lt;/Style&gt;&lt;Style&gt;cell&#123;border: 1px solid red;&#125;&lt;/Style&gt;'</span> +</span><br><span class="line">           <span class="string">'&lt;/Styles&gt;'</span> +</span><br><span class="line">           <span class="string">'&#123;worksheets&#125;&lt;/Workbook&gt;'</span>,</span><br><span class="line">           tmplWorksheetXML = <span class="string">'&lt;Worksheet ss:Name="&#123;nameWS&#125;"&gt;&lt;Table&gt;&#123;rows&#125;&lt;/Table&gt;&lt;/Worksheet&gt;'</span>,</span><br><span class="line">           tmplCellXML = <span class="string">'&lt;Cell&#123;attributeStyleID&#125;&#123;attributeFormula&#125;&gt;&lt;Data ss:Type="&#123;nameType&#125;"&gt;&#123;data&#125;&lt;/Data&gt;&lt;/Cell&gt;'</span>,</span><br><span class="line">           base64 = <span class="function"><span class="keyword">function</span> (<span class="params">s</span>) </span>&#123;</span><br><span class="line">               <span class="keyword">return</span> <span class="built_in">window</span>.btoa(<span class="built_in">unescape</span>(<span class="built_in">encodeURIComponent</span>(s)))</span><br><span class="line">           &#125;,</span><br><span class="line">           format = <span class="function"><span class="keyword">function</span> (<span class="params">s, c</span>) </span>&#123;</span><br><span class="line">               <span class="keyword">return</span> s.replace(<span class="regexp">/&#123;(\w+)&#125;/g</span>, <span class="function"><span class="keyword">function</span> (<span class="params">m, p</span>) </span>&#123;</span><br><span class="line">                   <span class="keyword">return</span> c[p];</span><br><span class="line">               &#125;)</span><br><span class="line">           &#125;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">var</span> ctx = <span class="string">""</span>;</span><br><span class="line">       <span class="keyword">var</span> workbookXML = <span class="string">""</span>;</span><br><span class="line">       <span class="keyword">var</span> worksheetsXML = <span class="string">""</span>;</span><br><span class="line">       <span class="keyword">var</span> rowsXML = <span class="string">""</span>;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; tables.length; i++) &#123;</span><br><span class="line">           <span class="keyword">if</span> (!tables[i].nodeType) tables[i] = <span class="built_in">document</span>.getElementById(tables[i]);</span><br><span class="line"></span><br><span class="line">           <span class="comment">//           控制要导出的行数</span></span><br><span class="line">           <span class="keyword">for</span> (<span class="keyword">var</span> j = <span class="number">0</span>; j &lt; tables[i].rows.length; j++) &#123;</span><br><span class="line">               rowsXML += <span class="string">'&lt;Row&gt;'</span>;</span><br><span class="line"></span><br><span class="line">               <span class="keyword">for</span> (<span class="keyword">var</span> k = <span class="number">0</span>; k &lt; tables[i].rows[j].cells.length; k++) &#123;</span><br><span class="line">                   <span class="keyword">var</span> dataType = tables[i].rows[j].cells[k].getAttribute(<span class="string">"data-type"</span>);</span><br><span class="line">                   <span class="keyword">var</span> dataStyle = tables[i].rows[j].cells[k].getAttribute(<span class="string">"data-style"</span>);</span><br><span class="line">                   tables[i].setAttribute(<span class="string">"border"</span>, <span class="string">"1"</span>);</span><br><span class="line">                   <span class="keyword">var</span> dataValue = tables[i].rows[j].cells[k].getAttribute(<span class="string">"data-value"</span>);</span><br><span class="line">                   dataValue = (dataValue) ? dataValue : tables[i].rows[j].cells[k].innerHTML;</span><br><span class="line">                   <span class="keyword">var</span> dataFormula = tables[i].rows[j].cells[k].getAttribute(<span class="string">"data-formula"</span>);</span><br><span class="line">                   dataFormula = (dataFormula) ? dataFormula : (appname == <span class="string">'Calc'</span> &amp;&amp; dataType == <span class="string">'DateTime'</span>) ?</span><br><span class="line">                       dataValue : <span class="literal">null</span>;</span><br><span class="line">                   ctx = &#123;</span><br><span class="line">                       attributeStyleID: (dataStyle == <span class="string">'Currency'</span> || dataStyle == <span class="string">'Date'</span>) ? <span class="string">' ss:StyleID="'</span> +</span><br><span class="line">                           dataStyle + <span class="string">'"'</span> : <span class="string">''</span>,</span><br><span class="line">                       nameType: (dataType == <span class="string">'Number'</span> || dataType == <span class="string">'DateTime'</span> || dataType == <span class="string">'Boolean'</span> ||</span><br><span class="line">                           dataType == <span class="string">'Error'</span>) ? dataType : <span class="string">'String'</span>,</span><br><span class="line">                       data: (dataFormula) ? <span class="string">''</span> : dataValue,</span><br><span class="line">                       attributeFormula: (dataFormula) ? <span class="string">' ss:Formula="'</span> + dataFormula + <span class="string">'"'</span> : <span class="string">''</span></span><br><span class="line">                   &#125;;</span><br><span class="line">                   rowsXML += format(tmplCellXML, ctx);</span><br><span class="line">               &#125;</span><br><span class="line">               rowsXML += <span class="string">'&lt;/Row&gt;'</span></span><br><span class="line">           &#125;</span><br><span class="line">           ctx = &#123;</span><br><span class="line">               rows: rowsXML,</span><br><span class="line">               nameWS: wsnames[i] || <span class="string">'Sheet'</span> + i</span><br><span class="line">           &#125;;</span><br><span class="line">           worksheetsXML += format(tmplWorksheetXML, ctx);</span><br><span class="line">           rowsXML = <span class="string">""</span>;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       ctx = &#123;</span><br><span class="line">           <span class="comment">// created: (new Date()).getTime(),</span></span><br><span class="line">           worksheets: worksheetsXML</span><br><span class="line">       &#125;;</span><br><span class="line">       workbookXML = format(tmplWorkbookXML, ctx);</span><br><span class="line">       <span class="comment">//       查看后台的打印输出</span></span><br><span class="line">       <span class="built_in">console</span>.log(workbookXML);</span><br><span class="line">       <span class="keyword">var</span> link = <span class="built_in">document</span>.createElement(<span class="string">"A"</span>);</span><br><span class="line">       link.href = uri + base64(workbookXML);</span><br><span class="line">       link.download = wbname || <span class="string">'Workbook.xls'</span>;</span><br><span class="line">       link.target = <span class="string">'_blank'</span>;</span><br><span class="line">       <span class="built_in">document</span>.body.appendChild(link);</span><br><span class="line">       link.click();</span><br><span class="line">       <span class="built_in">document</span>.body.removeChild(link);</span><br><span class="line"></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>总结：还有多sheet表外加样式下载，网上的教程也很多，但是我的这个表格很麻烦  无法把表格数据拿出来，只能获取dom值进行操作，现在就是需要多sheet表，表格有边框就行了，入有哪位大神知道，请和我留言下，万分感谢😊😊😊</strong></p>
+
+            <div class="post-copyright">
+    <div class="content">
+        <!-- <p>最后更新： 2020年06月17日 19:58</p> -->
+        <p>原始链接： <a class="post-url" href="/2020/06/17/%E5%89%8D%E7%AB%AF%E5%AF%BC%E5%87%BA%E8%A1%A8%E6%A0%BC%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E6%B3%95/" title="前端导出表格的几种方法">https://www.wxh520.xyz/2020/06/17/%E5%89%8D%E7%AB%AF%E5%AF%BC%E5%87%BA%E8%A1%A8%E6%A0%BC%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E6%B3%95/</a></p>
+        <footer>
+            <a href="https://www.wxh520.xyz">
+                <img src="/images/head1.jpg" alt="Wxh">
+                Wxh
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" target="_blank" rel="noopener">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" target="_blank" rel="noopener" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://www.wxh520.xyz/2020/06/17/%E5%89%8D%E7%AB%AF%E5%AF%BC%E5%87%BA%E8%A1%A8%E6%A0%BC%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E6%B3%95/&title=《前端导出表格的几种方法》 — Wxh's blog&pic=http://img.zcool.cn/community/0114d058ad6086a801219c77b4d462.jpg@1280w_1l_2o_100sh.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://www.wxh520.xyz/2020/06/17/%E5%89%8D%E7%AB%AF%E5%AF%BC%E5%87%BA%E8%A1%A8%E6%A0%BC%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E6%B3%95/&title=《前端导出表格的几种方法》 — Wxh's blog&source=热爱前端开发的技术博客" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://www.wxh520.xyz/2020/06/17/%E5%89%8D%E7%AB%AF%E5%AF%BC%E5%87%BA%E8%A1%A8%E6%A0%BC%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E6%B3%95/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《前端导出表格的几种方法》 — Wxh's blog&url=https://www.wxh520.xyz/2020/06/17/%E5%89%8D%E7%AB%AF%E5%AF%BC%E5%87%BA%E8%A1%A8%E6%A0%BC%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E6%B3%95/&via=https://www.wxh520.xyz" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://www.wxh520.xyz/2020/06/17/%E5%89%8D%E7%AB%AF%E5%AF%BC%E5%87%BA%E8%A1%A8%E6%A0%BC%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E6%B3%95/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://www.wxh520.xyz/2020/06/17/%E5%89%8D%E7%AB%AF%E5%AF%BC%E5%87%BA%E8%A1%A8%E6%A0%BC%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E6%B3%95/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/table导出/" class="color3">table导出</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前端导出表格的几种方法"><span class="post-toc-text">前端导出表格的几种方法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一，单表格下载-xlsx"><span class="post-toc-text">一，单表格下载(xlsx)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#二，单表格下载-样式"><span class="post-toc-text">二，单表格下载+样式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#三，多表格下载（xlsx）"><span class="post-toc-text">三，多表格下载（xlsx）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#第一种方法："><span class="post-toc-text">第一种方法：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#第二种方法："><span class="post-toc-text">第二种方法：</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+  
+    <a href="/2019/12/24/Git%E6%8F%90%E4%BA%A4/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">Git提交</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2020 Wxh<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://www.wxh520.xyz",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/JS/">JS</a><a class="category-link" href="/categories/JS%E5%9F%BA%E7%A1%80/">JS基础</a><a class="category-link" href="/categories/React/">React</a><a class="category-link" href="/categories/Table/">Table</a><a class="category-link" href="/categories/vue/">vue</a><a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E8%AF%B7%E6%B1%82/">数据请求</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/Hook/" style="font-size: 10px;">Hook</a> <a href="/tags/JS%E5%9F%BA%E7%A1%80/" style="font-size: 10px;">JS基础</a> <a href="/tags/table%E5%AF%BC%E5%87%BA/" style="font-size: 10px;">table导出</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/%E4%BA%A4%E4%BA%92/" style="font-size: 10px;">交互</a> <a href="/tags/%E4%BC%98%E5%8C%96/" style="font-size: 10px;">优化</a> <a href="/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 10px;">博客</a> <a href="/tags/%E5%9F%BA%E7%A1%80/" style="font-size: 10px;">基础</a> <a href="/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/" style="font-size: 10px;">开源项目</a> <a href="/tags/%E7%BB%A7%E6%89%BF/" style="font-size: 10px;">继承</a> <a href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/" style="font-size: 10px;">面试题</a>
+        </div>
+    </div>
+    <a href="javascript:;" target="_blank" rel="noopener" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/Hook/" style="font-size: 10px;">Hook</a> <a href="/tags/JS%E5%9F%BA%E7%A1%80/" style="font-size: 10px;">JS基础</a> <a href="/tags/table%E5%AF%BC%E5%87%BA/" style="font-size: 10px;">table导出</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/%E4%BA%A4%E4%BA%92/" style="font-size: 10px;">交互</a> <a href="/tags/%E4%BC%98%E5%8C%96/" style="font-size: 10px;">优化</a> <a href="/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 10px;">博客</a> <a href="/tags/%E5%9F%BA%E7%A1%80/" style="font-size: 10px;">基础</a> <a href="/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/" style="font-size: 10px;">开源项目</a> <a href="/tags/%E7%BB%A7%E6%89%BF/" style="font-size: 10px;">继承</a> <a href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/" style="font-size: 10px;">面试题</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;" target="_blank" rel="noopener">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>
